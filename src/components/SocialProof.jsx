@@ -7,15 +7,25 @@ export default function SocialProof({
   signupCount = 0,
   testimonials = [
     {
-      quote: 'Excel, email, and a phone runs 99% of the world—Trevi feels like the future.',
-      author: '– Alex Zhao, FBA Seller',
-      title: 'Early-access beta user',
+      quote: 'I’m constantly paying between 5-6 subscriptions for softwares and tools, my freight broker, and a spreadsheet — just to figure out if a product is even viable. If something pulled that together, it’d be game-changing.',
+      author: '– Ecommerce Founder',
+      title: '5+ Years FBA Experience',
     },
     {
-      quote: 'I used to spend hours juggling spreadsheets—Trevi cut it down to minutes.',
-      author: '– Priya Singh, Shopify Brand Owner',
-      title: 'Founder, Home Goods Co.',
+      quote: 'There’s no software for how we source — it’s all relationships, emails, and last-minute pricing conversations. If we could just see hidden costs earlier, we’d make better decisions.',
+      author: '–Operations',
+      title: 'Interior Design Firm',
     },
+    {
+        quote: 'You don’t need to promise perfect precision. If Trevi helps simulate rough costs and margin outcomes faster — that’s already a huge win for sellers.',
+        author: '– FBA Seller',
+        title: 'Multi-Channel Brand Owner',
+      },
+      {
+        quote: 'Even at the enterprise level, we still simulate sourcing risk manually. SMBs need a light, automated way to do what big teams spend weeks modeling.',
+        author: '– VP of Strategic Procurement',
+        title: 'Global Bank',
+      }
   ],
 }) {
   const [current, setCurrent] = useState(0)
@@ -64,12 +74,12 @@ export default function SocialProof({
            style={{ backgroundImage: `url(${hue})` }} />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center mb-10">
-        <p className="text-sm text-gray-500 uppercase tracking-wide mb-1">
-          {signupCount}+ sellers joined early access
-        </p>
         <h2 className="text-3xl font-bold text-gray-900">
-          What sellers are saying about Trevi
+            What We Heard from Sellers Like You
         </h2>
+        <p className="text-sm text-gray-500 tracking-wide mb-1">
+        25+ sellers and sourcing experts interviewed. The message was clear: sourcing is still manual, messy, and margin-blind.
+        </p>
       </div>
 
       {/* Carousel */}
