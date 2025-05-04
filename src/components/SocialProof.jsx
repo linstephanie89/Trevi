@@ -78,8 +78,7 @@ export default function SocialProof({
             What We Heard from Sellers Like You
         </h2>
         <p className="text-sm text-gray-500 tracking-wide mb-1">
-        25+ sellers and sourcing experts interviewed. The message was clear: sourcing is still manual, messy, and margin-blind.
-        </p>
+           We listened to what sellers are saying — in interviews, forums, and sourcing groups — and the message was consistent.        </p>
       </div>
 
       {/* Carousel */}
