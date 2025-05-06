@@ -1,9 +1,8 @@
-// server.js (ESM-based Express backend)
+// server.js (Google Sheets-enabled Express backend)
 
 import express from 'express'
 import bodyParser from 'body-parser'
-import { createObjectCsvWriter } from 'csv-writer'
-import fs from 'fs'
+import { google } from 'googleapis'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import cors from 'cors'
@@ -16,51 +15,34 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-// Determine shared data directory (relative to backend folder)
-const dataDir = path.resolve(__dirname, '../shared/data')
-if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true })
-
-// File paths
-const earlyCsvPath = path.join(dataDir, 'early_access.csv')
-const downloadsCsvPath = path.join(dataDir, 'downloads.csv')
-
-// CSV writers
-const earlyCsvWriter = createObjectCsvWriter({
-  path: earlyCsvPath,
-  header: [
-    { id: 'timestamp', title: 'Timestamp' },
-    { id: 'email', title: 'Email' },
-    { id: 'company', title: 'Company' },
-    { id: 'spend', title: 'Spend' },
-    { id: 'pain', title: 'Pain' },
-    { id: 'feedbackCall', title: 'FeedbackCall' },
-  ],
-  append: fs.existsSync(earlyCsvPath),
+// Google Sheets setup
+const auth = new google.auth.GoogleAuth({
+  keyFile: path.resolve(__dirname, 'service-account.json'), // Make sure this file is .gitignored
+  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 })
+const sheets = google.sheets({ version: 'v4', auth })
 
-const downloadsCsvWriter = createObjectCsvWriter({
-  path: downloadsCsvPath,
-  header: [
-    { id: 'timestamp', title: 'Timestamp' },
-    { id: 'email', title: 'Email' },
-  ],
-  append: fs.existsSync(downloadsCsvPath),
-})
+// Your actual Google Sheet ID
+const SPREADSHEET_ID = '1tAv6v211tajvMgtAxSVeGdy23iq-2xRd2bSf0hfEVLA'
+
+// Helper to append a row
+async function appendRow(sheetName, values) {
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: SPREADSHEET_ID,
+    range: `${sheetName}!A1`, // Automatically appends to next row
+    valueInputOption: 'USER_ENTERED',
+    requestBody: {
+      values: [values],
+    },
+  })
+}
 
 // Early-access route
 app.post('/api/early-access', async (req, res) => {
   try {
     const { email, company = '', spend = '', pain = '', feedbackCall = false } = req.body
-    await earlyCsvWriter.writeRecords([
-      {
-        timestamp: new Date().toISOString(),
-        email,
-        company,
-        spend,
-        pain,
-        feedbackCall: feedbackCall ? 'Yes' : 'No',
-      },
-    ])
+    const timestamp = new Date().toISOString()
+    await appendRow('EarlyAccess', [timestamp, email, company, spend, pain, feedbackCall ? 'Yes' : 'No'])
     res.json({ success: true })
   } catch (err) {
     console.error('Early Access Error:', err)
@@ -72,12 +54,8 @@ app.post('/api/early-access', async (req, res) => {
 app.post('/api/download', async (req, res) => {
   try {
     const { email } = req.body
-    await downloadsCsvWriter.writeRecords([
-      {
-        timestamp: new Date().toISOString(),
-        email,
-      },
-    ])
+    const timestamp = new Date().toISOString()
+    await appendRow('Downloads', [timestamp, email])
     res.json({ success: true })
   } catch (err) {
     console.error('Download Error:', err)
