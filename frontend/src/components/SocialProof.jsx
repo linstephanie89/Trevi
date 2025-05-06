@@ -8,11 +8,11 @@ const marqueeStyles = `
   100% { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 @media (max-width: 640px) {
   .animate-marquee {
-    animation-duration: 40s;
+    animation-duration: 30s;
   }
 }
 
