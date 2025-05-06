@@ -34,57 +34,63 @@ const auth = new google.auth.GoogleAuth({
 
 const sheets = google.sheets({ version: 'v4', auth })
 
-// Your spreadsheet ID
+// Spreadsheet ID and sheet tab names
 const SPREADSHEET_ID = '1tAv6v211tajvMgtAxSVeGdy23iq-2xRd2bSf0hfEVLA'
+const EARLY_ACCESS_TAB = 'EarlyAccess'
+const DOWNLOADS_TAB = 'Downloads'
 
-// Append row helper
+// Helper: log and append to Google Sheet
 async function appendRow(sheetName, values) {
   try {
     const result = await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${sheetName}!A1`,
+      range: `${sheetName}!A1`, // auto-append
       valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values: [values],
-      },
+      requestBody: { values: [values] },
     })
-    console.log(`✅ Google Sheets write success:`, result.data)
+    console.log(`✅ Wrote to Google Sheet [${sheetName}]`, result.data.updates.updatedRange)
   } catch (err) {
-    console.error('❌ Google Sheets write error:', err.response?.data || err.message)
-    throw err
+    const detail = err.response?.data || err.message || err
+    console.error(`❌ Failed to write to [${sheetName}]`, detail)
+    throw new Error(`Google Sheets write failed: ${detail}`)
   }
 }
 
-
-// Early access submission
+// POST /api/early-access
 app.post('/api/early-access', async (req, res) => {
   try {
     const { email, company = '', spend = '', pain = '', feedbackCall = false } = req.body
     const timestamp = new Date().toISOString()
-    await appendRow('EarlyAccess', [timestamp, email, company, spend, pain, feedbackCall ? 'Yes' : 'No'])
-    console.log('✅ Wrote to Google Sheet')
+    await appendRow(EARLY_ACCESS_TAB, [
+      timestamp,
+      email,
+      company,
+      spend,
+      pain,
+      feedbackCall ? 'Yes' : 'No',
+    ])
     res.json({ success: true })
   } catch (err) {
-    console.error('Early Access Error:', err)
+    console.error('Early Access Error:', err.message)
     res.status(500).json({ error: 'Could not record early-access' })
   }
 })
 
-// Download submission
+// POST /api/download
 app.post('/api/download', async (req, res) => {
   try {
     const { email } = req.body
     const timestamp = new Date().toISOString()
-    await appendRow('Downloads', [timestamp, email])
+    await appendRow(DOWNLOADS_TAB, [timestamp, email])
     res.json({ success: true })
   } catch (err) {
-    console.error('Download Error:', err)
+    console.error('Download Error:', err.message)
     res.status(500).json({ error: 'Could not record download' })
   }
 })
 
-// Launch server
+// Start server
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`)
+  console.log(`🚀 Trevi backend running on port ${PORT}`)
 })
