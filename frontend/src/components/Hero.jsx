@@ -17,11 +17,10 @@ export default function Hero({ onOpenModal, scrollToCalculator }) {
       <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* LEFT: Headline & CTAs */}
         <div className="text-center md:text-left">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-          Make smarter sourcing decisions{' '}
-          <br className="hidden sm:inline" />
-          before you spend a dollar.
-          </h1>
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight max-w-xl">
+          Make smarter sourcing decisions before you spend a dollar.
+        </h1>
+
           <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mb-8">
             Trevi replaces fragmented tools and guesswork with one{' '}
             <strong className="text-gray-900">intuitive sourcing assistant</strong>—guiding you from{' '}
