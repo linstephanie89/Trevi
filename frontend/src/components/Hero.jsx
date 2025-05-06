@@ -18,8 +18,9 @@ export default function Hero({ onOpenModal, scrollToCalculator }) {
         {/* LEFT: Headline & CTAs */}
         <div className="text-center md:text-left">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-            Make smarter sourcing decisions<br className="hidden sm:inline" />
-            before you spend a dollar.
+          Make smarter sourcing decisions{' '}
+          <br className="hidden sm:inline" />
+          before you spend a dollar.
           </h1>
           <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mb-8">
             Trevi replaces fragmented tools and guesswork with one{' '}
