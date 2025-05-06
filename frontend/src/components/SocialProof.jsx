@@ -12,7 +12,7 @@ const marqueeStyles = `
 }
 @media (max-width: 640px) {
   .animate-marquee {
-    animation-duration: 50s;
+    animation-duration: 70s;
   }
 }
 
