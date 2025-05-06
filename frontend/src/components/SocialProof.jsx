@@ -1,21 +1,24 @@
 import React from 'react'
 import hue from '../assets/bg_hue.png'
 
-// Marquee animation + responsive duration
+// Marquee animation + responsive tweaks
 const marqueeStyles = `
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 60s linear infinite;
+  animation: marquee 90s linear infinite;
+  will-change: transform;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 @media (max-width: 640px) {
   .animate-marquee {
-    animation-duration: 70s;
+    animation-duration: 110s;
   }
 }
-
 `
 
 export default function SocialProof() {
@@ -31,38 +34,18 @@ export default function SocialProof() {
       title: 'Interior Design Firm',
     },
     {
-      quote: 'You don’t need to promise perfect precision. If Trevi helps simulate rough costs and margin outcomes faster — that’s already a huge win for sellers.',
+      quote: 'Trevi helps simulate rough costs and margin outcomes faster — that’s already a huge win for sellers.',
       author: 'FBA Seller',
       title: 'Multi-Channel Brand Owner',
     },
     {
-      quote: 'Even at the enterprise level, we still simulate sourcing risk manually. SMBs need a light, automated way to do what big teams spend weeks modeling.',
+      quote: 'SMBs need a light, automated way to do what big teams spend weeks modeling.',
       author: 'VP of Strategic Procurement',
       title: 'Global Bank',
     },
-    {
-      quote: 'Alibaba is full of spammy suppliers. I spent weeks chasing leads that turned out to be dead ends—I needed vetted, reliable options instead.',
-      author: 'eCommerce Consultant',
-      title: 'SMB Sourcing Specialist',
-    },
-    {
-      quote: 'I winged my supplier switch with Google searches and hope, and it cost me thousands in delays. Even a rough simulation upfront would have prevented that.',
-      author: 'Shopify Brand Owner',
-      title: '2 Years FBA Experience',
-    },
-    {
-      quote: 'I was in “spreadsheet hell” trying to piece together freight, tariffs, and MOQ data across five different tools. A unified sourcing dashboard would be a lifesaver.',
-      author: 'Amazon FBA Seller',
-      title: '4 Years Selling on Amazon',
-    },
-    {
-      quote: 'I almost moved into India without realizing raw material bottlenecks in my category. A tool that highlights regional strengths and weaknesses would have saved me major headaches.',
-      author: 'Product Dev Lead',
-      title: 'Sustainable Goods Startup',
-    }
   ]
 
-  const looped = [...testimonials, ...testimonials] // seamless loop
+  const looped = [...testimonials, ...testimonials] // double for infinite loop
 
   return (
     <section
@@ -88,16 +71,16 @@ export default function SocialProof() {
         </p>
       </div>
 
-      {/* Scrollable marquee with swipe support */}
+      {/* Scrollable marquee */}
       <div className="overflow-x-auto scrollbar-hide relative">
         <div
-          className="flex animate-marquee pointer-events-none"
+          className="flex animate-marquee gap-4 pointer-events-auto"
           style={{ width: 'max-content' }}
         >
           {looped.map(({ quote, author, title }, i) => (
             <div
               key={i}
-              className="pointer-events-auto flex-none w-72 min-w-[280px] mr-6 bg-white p-4 rounded-xl shadow-sm text-gray-800"
+              className="flex-none w-72 min-w-[280px] mr-2 bg-white p-4 rounded-xl shadow-sm text-gray-800"
             >
               <p className="italic text-base leading-snug mb-2">“{quote}”</p>
               <p className="font-semibold text-sm mb-1">{author}</p>
