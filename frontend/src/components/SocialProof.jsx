@@ -1,7 +1,7 @@
 import React from 'react'
 import hue from '../assets/bg_hue.png'
 
-// Responsive marquee keyframes
+// Marquee animation + responsive duration
 const marqueeStyles = `
 @keyframes marquee {
   0% { transform: translateX(0); }
@@ -12,13 +12,13 @@ const marqueeStyles = `
 }
 @media (max-width: 640px) {
   .animate-marquee {
-    animation-duration: 20s;
+    animation-duration: 15s;
   }
 }
 `
 
-export default function SocialProof({
-  testimonials = [
+export default function SocialProof() {
+  const testimonials = [
     {
       quote: 'I’m constantly paying between 5-6 subscriptions for softwares and tools, my freight broker, and a spreadsheet — just to figure out if a product is even viable. If something pulled that together, it’d be game-changing.',
       author: 'Ecommerce Founder',
@@ -59,9 +59,9 @@ export default function SocialProof({
       author: 'Product Dev Lead',
       title: 'Sustainable Goods Startup',
     }
-  ],
-}) {
-  const looped = [...testimonials, ...testimonials]
+  ]
+
+  const looped = [...testimonials, ...testimonials] // seamless loop
 
   return (
     <section
@@ -77,6 +77,7 @@ export default function SocialProof({
     >
       <style>{marqueeStyles}</style>
 
+      {/* Header */}
       <div className="relative z-10 max-w-4xl mx-auto text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-900">
           What We Heard from Sellers Like You
@@ -86,12 +87,16 @@ export default function SocialProof({
         </p>
       </div>
 
-      <div className="overflow-hidden">
-        <div className="flex animate-marquee">
+      {/* Scrollable marquee with swipe support */}
+      <div className="overflow-x-auto scrollbar-hide relative">
+        <div
+          className="flex animate-marquee pointer-events-none"
+          style={{ width: 'max-content' }}
+        >
           {looped.map(({ quote, author, title }, i) => (
             <div
               key={i}
-              className="flex-none w-1/4 min-w-[300px] mr-6 bg-white p-4 rounded-xl shadow-sm text-gray-800"
+              className="pointer-events-auto flex-none w-72 min-w-[280px] mr-6 bg-white p-4 rounded-xl shadow-sm text-gray-800"
             >
               <p className="italic text-base leading-snug mb-2">“{quote}”</p>
               <p className="font-semibold text-sm mb-1">{author}</p>
