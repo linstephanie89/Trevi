@@ -1,4 +1,4 @@
-// server.js (Google Sheets-enabled Express backend)
+// server.js (Google Sheets via ENV vars, ESM-compatible)
 
 import express from 'express'
 import bodyParser from 'body-parser'
@@ -7,7 +7,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import cors from 'cors'
 
-// Shim __dirname for ESM
+// __dirname shim for ESM
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
@@ -15,21 +15,33 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-// Google Sheets setup
+// Google Sheets authentication using ENV vars
 const auth = new google.auth.GoogleAuth({
-  keyFile: path.resolve(__dirname, 'service-account.json'), // Make sure this file is .gitignored
+  credentials: {
+    type: process.env.GOOGLE_TYPE,
+    project_id: process.env.GOOGLE_PROJECT_ID,
+    private_key_id: process.env.GOOGLE_PRIVATE_KEY_ID,
+    private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLIENT_EMAIL,
+    client_id: process.env.GOOGLE_CLIENT_ID,
+    auth_uri: process.env.GOOGLE_AUTH_URI,
+    token_uri: process.env.GOOGLE_TOKEN_URI,
+    auth_provider_x509_cert_url: process.env.GOOGLE_AUTH_PROVIDER_X509_CERT_URL,
+    client_x509_cert_url: process.env.GOOGLE_CLIENT_X509_CERT_URL,
+  },
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 })
+
 const sheets = google.sheets({ version: 'v4', auth })
 
-// Your actual Google Sheet ID
+// Your spreadsheet ID
 const SPREADSHEET_ID = '1tAv6v211tajvMgtAxSVeGdy23iq-2xRd2bSf0hfEVLA'
 
-// Helper to append a row
+// Append row helper
 async function appendRow(sheetName, values) {
   await sheets.spreadsheets.values.append({
     spreadsheetId: SPREADSHEET_ID,
-    range: `${sheetName}!A1`, // Automatically appends to next row
+    range: `${sheetName}!A1`,
     valueInputOption: 'USER_ENTERED',
     requestBody: {
       values: [values],
@@ -37,7 +49,7 @@ async function appendRow(sheetName, values) {
   })
 }
 
-// Early-access route
+// Early access submission
 app.post('/api/early-access', async (req, res) => {
   try {
     const { email, company = '', spend = '', pain = '', feedbackCall = false } = req.body
@@ -50,7 +62,7 @@ app.post('/api/early-access', async (req, res) => {
   }
 })
 
-// Download route
+// Download submission
 app.post('/api/download', async (req, res) => {
   try {
     const { email } = req.body
@@ -63,7 +75,7 @@ app.post('/api/download', async (req, res) => {
   }
 })
 
-// Start server
+// Launch server
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`)
