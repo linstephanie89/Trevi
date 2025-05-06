@@ -1,8 +1,7 @@
-// src/components/SocialProof.jsx
 import React from 'react'
 import hue from '../assets/bg_hue.png'
 
-// Marquee keyframes CSS (could move to global CSS)
+// Responsive marquee keyframes
 const marqueeStyles = `
 @keyframes marquee {
   0% { transform: translateX(0); }
@@ -10,6 +9,11 @@ const marqueeStyles = `
 }
 .animate-marquee {
   animation: marquee 40s linear infinite;
+}
+@media (max-width: 640px) {
+  .animate-marquee {
+    animation-duration: 20s;
+  }
 }
 `
 
@@ -57,7 +61,6 @@ export default function SocialProof({
     }
   ],
 }) {
-  // Create seamless loop
   const looped = [...testimonials, ...testimonials]
 
   return (
@@ -72,10 +75,8 @@ export default function SocialProof({
         backgroundBlendMode: 'soft-light',
       }}
     >
-      {/* Inject marquee keyframes */}
       <style>{marqueeStyles}</style>
 
-      {/* Header */}
       <div className="relative z-10 max-w-4xl mx-auto text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-900">
           What We Heard from Sellers Like You
@@ -85,7 +86,6 @@ export default function SocialProof({
         </p>
       </div>
 
-      {/* Marquee Container */}
       <div className="overflow-hidden">
         <div className="flex animate-marquee">
           {looped.map(({ quote, author, title }, i) => (
