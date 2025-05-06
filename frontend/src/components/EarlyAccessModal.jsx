@@ -11,7 +11,8 @@ export default function EarlyAccessModal({ show, onClose }) {
   const [submitted, setSubmitted]       = useState(false)
   const [error, setError]               = useState(null)
 
-  // Whenever the modal is opened, clear all form state
+  const apiUrl = import.meta.env.VITE_API_URL
+
   useEffect(() => {
     if (show) {
       setEmail('')
@@ -31,14 +32,12 @@ export default function EarlyAccessModal({ show, onClose }) {
     setError(null)
 
     try {
-      const res = await fetch('/api/early-access', {
+      const res = await fetch(`${apiUrl}/api/early-access`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, company, spend, pain, feedbackCall })
       })
-      if (!res.ok) {
-        throw new Error(`Server returned ${res.status}`)
-      }
+      if (!res.ok) throw new Error(`Server returned ${res.status}`)
       setSubmitted(true)
     } catch (err) {
       console.error('Early access submission error:', err)
@@ -56,11 +55,7 @@ export default function EarlyAccessModal({ show, onClose }) {
         {!submitted ? (
           <>
             <h3 className="text-xl font-bold mb-4">Join Trevi Early Access</h3>
-            {error && (
-              <div className="mb-4 text-red-600">
-                {error}
-              </div>
-            )}
+            {error && <div className="mb-4 text-red-600">{error}</div>}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium">

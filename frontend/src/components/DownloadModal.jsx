@@ -2,19 +2,21 @@
 import React, { useState, useEffect } from 'react'
 
 export default function DownloadModal({ show, onClose }) {
-  const [email, setEmail]         = useState('')
-  const [status, setStatus]       = useState('idle') // 'idle' | 'sending' | 'success' | 'error'
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState('')
 
-  // auto-close after success
+  const apiUrl = import.meta.env.VITE_API_URL
+
+  // Auto-close after success
   useEffect(() => {
     let t
     if (status === 'success') {
       t = setTimeout(() => {
-        setStatus('idle');
-        setEmail('');
-        onClose();
-      }, 1500);
+        setStatus('idle')
+        setEmail('')
+        onClose()
+      }, 1500)
     }
     return () => clearTimeout(t)
   }, [status, onClose])
@@ -23,23 +25,28 @@ export default function DownloadModal({ show, onClose }) {
     e.preventDefault()
     setStatus('sending')
     setErrorMessage('')
+
     try {
-      const res = await fetch('/api/download', {
+      const res = await fetch(`${apiUrl}/api/download`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       })
+
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
         throw new Error(data.error || 'Network response was not ok')
       }
+
       setStatus('success')
+
+      // Trigger the file download
       window.open(
         'https://docs.google.com/spreadsheets/d/1yKh-pYtRI1YjpMorI-6DthgepkrB_QSEQdB3mbfCGDY/export?format=xlsx',
         '_blank'
       )
     } catch (err) {
-      console.error(err)
+      console.error('Download submission error:', err)
       setErrorMessage(err.message || 'Something went wrong.')
       setStatus('error')
     }
@@ -62,7 +69,7 @@ export default function DownloadModal({ show, onClose }) {
                 type="email"
                 required
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 className="mt-1 w-full border rounded px-3 py-2"
                 disabled={status === 'sending'}
               />
@@ -76,9 +83,9 @@ export default function DownloadModal({ show, onClose }) {
               <button
                 type="button"
                 onClick={() => {
-                  setStatus('idle');
-                  setErrorMessage('');
-                  onClose();
+                  setStatus('idle')
+                  setErrorMessage('')
+                  onClose()
                 }}
                 className="px-4 py-2"
                 disabled={status === 'sending'}
