@@ -39,15 +39,22 @@ const SPREADSHEET_ID = '1tAv6v211tajvMgtAxSVeGdy23iq-2xRd2bSf0hfEVLA'
 
 // Append row helper
 async function appendRow(sheetName, values) {
-  await sheets.spreadsheets.values.append({
-    spreadsheetId: SPREADSHEET_ID,
-    range: `${sheetName}!A1`,
-    valueInputOption: 'USER_ENTERED',
-    requestBody: {
-      values: [values],
-    },
-  })
+  try {
+    const result = await sheets.spreadsheets.values.append({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `${sheetName}!A1`,
+      valueInputOption: 'USER_ENTERED',
+      requestBody: {
+        values: [values],
+      },
+    })
+    console.log(`✅ Google Sheets write success:`, result.data)
+  } catch (err) {
+    console.error('❌ Google Sheets write error:', err.response?.data || err.message)
+    throw err
+  }
 }
+
 
 // Early access submission
 app.post('/api/early-access', async (req, res) => {
@@ -55,6 +62,7 @@ app.post('/api/early-access', async (req, res) => {
     const { email, company = '', spend = '', pain = '', feedbackCall = false } = req.body
     const timestamp = new Date().toISOString()
     await appendRow('EarlyAccess', [timestamp, email, company, spend, pain, feedbackCall ? 'Yes' : 'No'])
+    console.log('✅ Wrote to Google Sheet')
     res.json({ success: true })
   } catch (err) {
     console.error('Early Access Error:', err)
