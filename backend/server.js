@@ -56,25 +56,43 @@ async function appendRow(sheetName, values) {
   }
 }
 
-// POST /api/early-access
+
+// POST /api/early-access  ── save wait‑list lead to Google Sheet (or DB)
 app.post('/api/early-access', async (req, res) => {
   try {
-    const { email, company = '', spend = '', pain = '', feedbackCall = false } = req.body
-    const timestamp = new Date().toISOString()
+    const {
+      email,
+      role = '',                   
+      companyType = '',            
+      sourcingChallenges = [],     
+      monthlySpend = '',          
+      feedbackCall = false,
+    } = req.body;
+
+    const timestamp = new Date().toISOString();
+
+    // Convert the array of challenges to a single cell (comma‑separated)
+    const challengeStr = Array.isArray(sourcingChallenges)
+      ? sourcingChallenges.join(', ')
+      : String(sourcingChallenges || '');
+
     await appendRow(EARLY_ACCESS_TAB, [
       timestamp,
       email,
-      company,
-      spend,
-      pain,
+      role,
+      companyType,
+      challengeStr,
+      monthlySpend,
       feedbackCall ? 'Yes' : 'No',
-    ])
-    res.json({ success: true })
+    ]);
+
+    res.json({ success: true });
   } catch (err) {
-    console.error('Early Access Error:', err.message)
-    res.status(500).json({ error: 'Could not record early-access' })
+    console.error('Early‑Access Error:', err.message);
+    res.status(500).json({ error: 'Could not record early‑access' });
   }
-})
+});
+
 
 // POST /api/download
 app.post('/api/download', async (req, res) => {
