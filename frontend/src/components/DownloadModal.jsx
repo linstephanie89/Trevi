@@ -42,7 +42,7 @@ export default function DownloadModal({ show, onClose }) {
 
       // Trigger the file download
       window.open(
-        'https://docs.google.com/spreadsheets/d/e/2PACX-1vTQJ43IgiOnaY8nC_9UrZYG19LDxl0s0CsD7TUa_3cxbD-2fZqfJ87IfSPfFzFxbSPWomp2YnM2bmcm/pub?output=xlsx',
+        'https://docs.google.com/spreadsheets/d/e/2PACX-1vRNUiA8H3MF5W6YVB7hzwUQkFAxfxQpWY8ue0X609dPZKxRqUbQ22LyX73X71_Iw0UaMzPRn-ibu7vL/pub?output=xlsx',
         '_blank'
       )      
     } catch (err) {
