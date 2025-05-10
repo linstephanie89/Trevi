@@ -20,8 +20,8 @@ const steps = [
   },
   {
     Icon: EnvelopeIcon,
-    title: '3. Connect with Suppliers',
-    desc: 'Receive AI-vetted supplier matches and ready-to-send inquiry emails.',
+    title: '3. Match with Trusted Partners',
+    desc: 'We’ll pair you with vetted suppliers or sourcing agents tailored to your product, region, and readiness.',
   },
 ]
 

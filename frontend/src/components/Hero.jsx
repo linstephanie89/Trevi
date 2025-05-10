@@ -21,13 +21,14 @@ export default function Hero({ onOpenModal, scrollToCalculator }) {
           Make smarter sourcing decisions before you spend a dollar.
         </h1>
 
-          <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mb-8">
-            Trevi replaces fragmented tools and guesswork with one{' '}
-            <strong className="text-gray-900">intuitive sourcing assistant</strong>—guiding you from{' '}
-            <strong className="text-gray-900">product research</strong> to{' '}
-            <strong className="text-gray-900">margin simulation</strong> and{' '}
-            <strong className="text-gray-900">supplier discovery</strong>, all with enterprise-grade logic.
-          </p>
+        <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mb-8">
+          Trevi helps you build <strong>smarter sourcing relationships</strong>—pairing you with trusted suppliers and agents, then backing every connection with{' '}
+          <strong className="text-gray-900">product research</strong>,{' '}
+          <strong className="text-gray-900">cost simulation</strong>, and{' '}
+          <strong className="text-gray-900">margin insights</strong>—all in one streamlined platform.
+        </p>
+
+
 
           <div className="flex justify-center md:justify-start gap-4 flex-wrap">
             {/* Primary CTA: scroll to the calculator */}

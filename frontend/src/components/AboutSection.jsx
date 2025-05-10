@@ -16,8 +16,8 @@ export default function AboutSection() {
     },
     {
       icon: <Users className="w-8 h-8 text-[#4FD1C5]" />,
-      title: 'Curated Supplier Network',
-      desc: '<strong>AI-vetted suppliers</strong> scored by reliability, lead time & compliance—so you never chase down quotes.',
+      title: 'Verified Partners, Not Just Listings',
+      desc: 'Trevi connects you with <strong>vetted suppliers</strong> scored by reliability, lead time & past buyer experience.',
     },
     {
       icon: <Compass className="w-8 h-8 text-[#4FD1C5]" />,
