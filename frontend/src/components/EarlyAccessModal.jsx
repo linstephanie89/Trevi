@@ -1,10 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-/**
- * Early‑access modal rewritten to match the recommended data‑collection layout:
- *   • Required: email, role, companyType, at least one sourcingChallenge
- *   • Optional: monthlySpend, opt‑in feedback call
- */
 export default function EarlyAccessModal({ show, onClose }) {
   // ─── Form state ────────────────────────────────────────────────────────────
   const [email, setEmail] = useState("");
@@ -122,7 +116,6 @@ export default function EarlyAccessModal({ show, onClose }) {
     { value: ">25k", label: "Over $25K" },
   ];
 
-  // ─── Render ────────────────────────────────────────────────────────────────
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
@@ -131,7 +124,6 @@ export default function EarlyAccessModal({ show, onClose }) {
             <h3 className="text-xl font-bold mb-4">Join Trevi Early Access</h3>
             {error && <div className="mb-4 text-red-600 text-sm">{error}</div>}
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Email */}
               <div>
                 <label className="block text-sm font-medium">
                   Email <span className="text-red-500">*</span>
@@ -147,7 +139,6 @@ export default function EarlyAccessModal({ show, onClose }) {
                 />
               </div>
 
-              {/* Role */}
               <div>
                 <label className="block text-sm font-medium">
                   Role / Responsibility <span className="text-red-500">*</span>
@@ -170,7 +161,6 @@ export default function EarlyAccessModal({ show, onClose }) {
                 </select>
               </div>
 
-              {/* Company type */}
               <div>
                 <label className="block text-sm font-medium">
                   Company Type <span className="text-red-500">*</span>
@@ -193,7 +183,6 @@ export default function EarlyAccessModal({ show, onClose }) {
                 </select>
               </div>
 
-              {/* Sourcing challenges (multi‑select) */}
               <div>
                 <label className="block text-sm font-medium mb-1">
                   Biggest Sourcing Challenge(s) <span className="text-red-500">*</span>
@@ -213,7 +202,6 @@ export default function EarlyAccessModal({ show, onClose }) {
                 </div>
               </div>
 
-              {/* Monthly spend (optional) */}
               <div>
                 <label className="block text-sm font-medium">Monthly Sourcing Spend</label>
                 <select
@@ -230,7 +218,6 @@ export default function EarlyAccessModal({ show, onClose }) {
                 </select>
               </div>
 
-              {/* Feedback‑call opt‑in */}
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"

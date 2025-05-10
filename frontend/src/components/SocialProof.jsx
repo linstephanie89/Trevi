@@ -1,7 +1,6 @@
 import React from 'react'
 import hue from '../assets/bg_hue.png'
 
-// Marquee styles
 const marqueeStyles = `
 @keyframes marquee {
   0% { transform: translateX(0); }
@@ -50,7 +49,7 @@ export default function SocialProof() {
     },
   ]
 
-  const looped = [...testimonials, ...testimonials] // looped for marquee
+  const looped = [...testimonials, ...testimonials]  
 
   return (
     <section
@@ -66,7 +65,6 @@ export default function SocialProof() {
     >
       <style>{marqueeStyles}</style>
 
-      {/* Header */}
       <div className="relative z-10 max-w-4xl mx-auto text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-900">
           What Sellers Told Us — And Why We’re Building Trevi
@@ -76,13 +74,10 @@ export default function SocialProof() {
         </p>
       </div>
 
-      {/* Shadow edges */}
       <div className="relative overflow-hidden">
-        {/* Left & Right Shadows */}
         <div className="absolute top-0 left-0 h-full w-16 bg-gradient-to-r from-[#F8FAF9] to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-[#F8FAF9] to-transparent z-10 pointer-events-none" />
 
-        {/* Marquee Row */}
         <div className="animate-marquee flex gap-4 w-max">
           {looped.map(({ quote, author, title }, i) => (
             <div

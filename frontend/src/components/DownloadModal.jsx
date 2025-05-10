@@ -1,14 +1,13 @@
-// src/components/DownloadModal.jsx
 import React, { useState, useEffect } from 'react'
 
 export default function DownloadModal({ show, onClose }) {
   const [email, setEmail] = useState('')
-  const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'success' | 'error'
+  const [status, setStatus] = useState('idle') 
   const [errorMessage, setErrorMessage] = useState('')
 
   const apiUrl = import.meta.env.VITE_API_URL
 
-  // Auto-close after success
+
   useEffect(() => {
     let t
     if (status === 'success') {
@@ -39,8 +38,6 @@ export default function DownloadModal({ show, onClose }) {
       }
 
       setStatus('success')
-
-      // Trigger the file download
       window.open(
         'https://docs.google.com/spreadsheets/d/1yKh-pYtRI1YjpMorI-6DthgepkrB_QSEQdB3mbfCGDY/copy',
         '_blank'

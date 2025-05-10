@@ -1,4 +1,3 @@
-// src/components/Simulation.jsx
 import React, { useState, useMemo } from 'react'
 import { ChevronRight, X, Info } from 'lucide-react'
 import DownloadModal from './DownloadModal'
@@ -75,7 +74,6 @@ export default function Simulation({ onOpenEarlyAccess }) {
 
   const hasInputs = baseInputs.pc || baseInputs.sc || baseInputs.sp
 
-  // — Helper for insight message
   const getInsight = margin => {
     if (margin >= 30) return { icon: '✅', text: 'Healthy Margin — Strong sourcing choice', color: 'text-green-700' }
     if (margin >= 10) return { icon: '🟠', text: 'Moderate: consider further analysis', color: 'text-yellow-700' }
@@ -93,7 +91,7 @@ export default function Simulation({ onOpenEarlyAccess }) {
         backgroundSize:    '1200px 1200px',
       }}
     >
-      {/* Calculator Card */}
+
       <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg mb-12">
         <div className="flex items-center justify-center mb-4">
           <h2 className="text-2xl font-bold text-gray-900">
@@ -161,7 +159,6 @@ export default function Simulation({ onOpenEarlyAccess }) {
         )}
       </div>
 
-      {/* Overview Pills */}
       <div className="flex flex-wrap justify-center gap-4 mb-12">
         {markets.map(m => (
           <button
@@ -186,7 +183,6 @@ export default function Simulation({ onOpenEarlyAccess }) {
         ))}
       </div>
 
-      {/* Expanded Detail + Insight */}
       {selected && (() => {
         const m = markets.find(x => x.name === selected)
         const insight = getInsight(m.margin)
@@ -218,7 +214,6 @@ export default function Simulation({ onOpenEarlyAccess }) {
               ))}
             </div>
 
-            {/* New decision-support insight */}
             <p className={`text-center font-medium ${insight.color}`}>
               {insight.icon} {insight.text}
             </p>
@@ -226,7 +221,6 @@ export default function Simulation({ onOpenEarlyAccess }) {
         )
       })()}
 
-      {/* Download CTA */}
       <div className="text-center mb-16">
         <button
           onClick={() => { setShowDL(true); setDownloaded(false) }}

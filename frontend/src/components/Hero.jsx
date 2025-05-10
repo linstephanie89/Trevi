@@ -15,7 +15,6 @@ export default function Hero({ onOpenModal, scrollToCalculator }) {
       }}
     >
       <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* LEFT: Headline & CTAs */}
         <div className="text-center md:text-left">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight max-w-xl">
           Make smarter sourcing decisions before you spend a dollar.
@@ -31,7 +30,6 @@ export default function Hero({ onOpenModal, scrollToCalculator }) {
 
 
           <div className="flex justify-center md:justify-start gap-4 flex-wrap">
-            {/* Primary CTA: scroll to the calculator */}
             <button
               onClick={scrollToCalculator}
               className="inline-block bg-[#4FD1C5] hover:bg-[#3FC1B2] text-white px-6 py-3 rounded-md font-semibold transition"
@@ -39,7 +37,6 @@ export default function Hero({ onOpenModal, scrollToCalculator }) {
               Try the Calculator
             </button>
 
-            {/* Secondary CTA: open the modal */}
             <button
               onClick={onOpenModal}
               className="inline-block text-[#4FD1C5] border border-[#4FD1C5] hover:bg-[#E2F9F4] px-6 py-3 rounded-md font-medium transition"
@@ -49,7 +46,6 @@ export default function Hero({ onOpenModal, scrollToCalculator }) {
           </div>
         </div>
 
-        {/* RIGHT: Illustration */}
         <div className="flex justify-center md:justify-end">
           <img
             src={informedDec}
