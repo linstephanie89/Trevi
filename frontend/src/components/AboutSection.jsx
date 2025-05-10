@@ -1,28 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
 import glowShape from '../assets/bg_hue.png'
 import { BarChart2, DollarSign, Users, Compass } from 'lucide-react'
 
 export default function AboutSection() {
   const benefits = [
     {
-      icon: <BarChart2 className="w-8 h-8 text-[#4FD1C5]" />,
-      title: 'Unified Cost Engine',
-      desc: 'One dashboard to <strong>validate products</strong>, estimate landed cost (tariffs + freight + MOQs) and <strong>compare scenarios</strong>—no more tab-hopping.',
-    },
-    {
       icon: <DollarSign className="w-8 h-8 text-[#4FD1C5]" />,
-      title: 'Margin Impact Modeling',
-      desc: 'See exactly <strong>how tariffs, shipping rates, and target prices</strong> affect your profit—so you can adjust before you order.',
+      title: 'Price-Back Sourcing Guidance',
+      desc: 'Start with a product idea—Trevi helps you define smart price targets and recommends suppliers and regions that work within your margin goals.',
     },
     {
       icon: <Users className="w-8 h-8 text-[#4FD1C5]" />,
-      title: 'Verified Partners, Not Just Listings',
-      desc: 'Trevi connects you with <strong>vetted suppliers</strong> scored by reliability, lead time & past buyer experience.',
+      title: 'Verified Matches, Not Cold Lists',
+      desc: 'We connect you with <strong>vetted sourcing agents and suppliers</strong>, curated by region, product fit, and trust—no more ghosting or guessing.',
+    },
+    {
+      icon: <BarChart2 className="w-8 h-8 text-[#4FD1C5]" />,
+      title: 'Scenario-Based Cost Simulation',
+      desc: 'Compare rough landed costs across countries—<strong>tariffs, freight, MOQs, fulfillment</strong>—before you even send an RFQ.',
     },
     {
       icon: <Compass className="w-8 h-8 text-[#4FD1C5]" />,
-      title: 'Dynamic Sourcing Insights',
-      desc: 'Automated tips—“85% from China? Consider Vietnam.” or “Trade-war alert: margins at risk”—so you stay one step ahead.',
+      title: 'Sourcing Risk Signals',
+      desc: 'Get real-time prompts like “85% of results are in China” or “Tariff hike incoming”—so you can diversify and protect your margins early.',
     },
   ]
 
@@ -36,9 +36,10 @@ export default function AboutSection() {
           backgroundRepeat: 'no-repeat',
           backgroundSize: '700px 700px',
           backgroundPosition: 'center',
-          filter: 'brightness(0.7)',  
+          filter: 'brightness(0.7)',
         }}
       />
+      {/* bottom-left glow */}
       <div
         className="absolute -bottom-48 -left-48 w-[900px] h-[900px] opacity-80 blur-[200px] pointer-events-none select-none"
         style={{
@@ -46,17 +47,14 @@ export default function AboutSection() {
           backgroundRepeat: 'no-repeat',
           backgroundSize: '700px 700px',
           backgroundPosition: 'center',
-          filter: 'brightness(0.7)',    
+          filter: 'brightness(0.7)',
         }}
       />
 
       <div className="relative z-10 max-w-6xl mx-auto text-center px-6">
         <h2 className="text-3xl font-bold mb-4">Why Trevi?</h2>
         <p className="text-gray-700 mb-12 leading-relaxed">
-          Stop juggling <strong>half-a-dozen tools</strong> and outdated pricing sheets.  
-          Trevi <strong>consolidates product research, cost modeling</strong> and reliable  
-          <strong> supplier discovery</strong>—all in one intuitive platform built for small  
-          and growing e-commerce brands.
+          Trevi isn’t just another sourcing tool—it’s your behind-the-scenes sourcing guide. Whether you're launching your first private label or scaling your brand, Trevi helps you move with confidence—not confusion.
         </p>
 
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">

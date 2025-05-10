@@ -1,23 +1,18 @@
 import React from 'react'
 import hue from '../assets/bg_hue.png'
 
-// Marquee animation + responsive tweaks
+// Marquee styles
 const marqueeStyles = `
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 90s linear infinite;
+  animation: marquee 60s linear infinite;
   will-change: transform;
 }
 .animate-marquee:hover {
   animation-play-state: paused;
-}
-@media (max-width: 640px) {
-  .animate-marquee {
-    animation-duration: 110s;
-  }
 }
 `
 
@@ -43,14 +38,24 @@ export default function SocialProof() {
       author: 'VP of Strategic Procurement',
       title: 'Global Bank',
     },
+    {
+      quote: "When you're just starting out, sourcing feels like a black box. Trevi makes it easier to connect with agents and compare costs in one place.",
+      author: 'New Seller',
+      title: 'Launched First Product Last Year',
+    },
+    {
+      quote: "We spend hours chasing quotes and reworking spreadsheets. Trevi could cut that in half and help us act faster.",
+      author: 'Procurement Analyst',
+      title: 'Consumer Goods Startup',
+    },
   ]
 
-  const looped = [...testimonials, ...testimonials] // double for infinite loop
+  const looped = [...testimonials, ...testimonials] // looped for marquee
 
   return (
     <section
       id="social-proof"
-      className="relative px-6 py-16 bg-[#F8FAF9] overflow-hidden scroll-mt-20"
+      className="relative px-6 py-16 bg-[#F8FAF9] scroll-mt-20"
       style={{
         backgroundImage: `url(${hue})`,
         backgroundRepeat: 'no-repeat',
@@ -64,23 +69,25 @@ export default function SocialProof() {
       {/* Header */}
       <div className="relative z-10 max-w-4xl mx-auto text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-900">
-          What We Heard from Sellers Like You
+          What Sellers Told Us — And Why We’re Building Trevi
         </h2>
         <p className="text-sm text-gray-500 tracking-wide">
           We listened to interviews, forums, and sourcing groups — the message was consistent.
         </p>
       </div>
 
-      {/* Scrollable marquee */}
-      <div className="overflow-x-auto scrollbar-hide relative">
-        <div
-          className="flex animate-marquee gap-4 pointer-events-auto"
-          style={{ width: 'max-content' }}
-        >
+      {/* Shadow edges */}
+      <div className="relative overflow-hidden">
+        {/* Left & Right Shadows */}
+        <div className="absolute top-0 left-0 h-full w-16 bg-gradient-to-r from-[#F8FAF9] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-[#F8FAF9] to-transparent z-10 pointer-events-none" />
+
+        {/* Marquee Row */}
+        <div className="animate-marquee flex gap-4 w-max">
           {looped.map(({ quote, author, title }, i) => (
             <div
               key={i}
-              className="flex-none w-72 min-w-[280px] mr-2 bg-white p-4 rounded-xl shadow-sm text-gray-800"
+              className="flex-none w-[280px] lg:w-[300px] bg-white p-5 rounded-xl shadow text-gray-800"
             >
               <p className="italic text-base leading-snug mb-2">“{quote}”</p>
               <p className="font-semibold text-sm mb-1">{author}</p>

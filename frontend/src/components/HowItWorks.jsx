@@ -10,18 +10,18 @@ import {
 const steps = [
   {
     Icon: DocumentTextIcon,
-    title: '1. Describe Your Product',
-    desc: 'Tell Trevi what you’re sourcing—product category, desired price range, and target margins.',
+    title: '1. Define Your Product Goals',
+    desc: 'Tell us what you’re sourcing—product category, target price, and business goals like margin or lead time.',
   },
   {
     Icon: ChartBarIcon,
-    title: '2. Simulate Landed Costs',
-    desc: 'Instantly compare total landed costs—tariffs, freight, MOQs—across your top countries.',
+    title: '2. Simulate Real Costs',
+    desc: 'Compare total landed cost ranges across countries, including tariffs, freight, and MOQ benchmarks.',
   },
   {
     Icon: EnvelopeIcon,
     title: '3. Match with Trusted Partners',
-    desc: 'We’ll pair you with vetted suppliers or sourcing agents tailored to your product, region, and readiness.',
+    desc: 'Get a shortlist of trusted suppliers or sourcing agents—filtered by product fit, country, and reliability.',
   },
 ]
 
