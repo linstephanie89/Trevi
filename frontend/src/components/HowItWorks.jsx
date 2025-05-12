@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import EarlyAccessModal from './EarlyAccessModal'
-import glowShape from '../assets/bg_hue.png'
+import React from 'react';
+import glowShape from '../assets/bg_hue.png';
 import {
   DocumentTextIcon,
   ChartBarIcon,
   EnvelopeIcon,
-} from '@heroicons/react/24/outline'
+} from '@heroicons/react/24/outline';
 
 const steps = [
   {
@@ -23,10 +22,13 @@ const steps = [
     title: '3. Meet the Right People',
     desc: 'Get matched with trusted suppliers or sourcing agents based on your product type, region, and goals — with real guidance, not just a list.',
   },
-]
+];
 
 export default function HowItWorks() {
-  const [showModal, setShowModal] = useState(false)
+  const scrollToEarlyAccess = () => {
+    const el = document.getElementById('early-access');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section
@@ -82,18 +84,12 @@ export default function HowItWorks() {
         </div>
 
         <button
-          onClick={() => setShowModal(true)}
+          onClick={scrollToEarlyAccess}
           className="mt-12 bg-[#4FD1C5] hover:bg-[#3FC1B2] text-white px-8 py-3 rounded-md font-semibold transition"
         >
           Get Early Access
         </button>
       </div>
-
-      <EarlyAccessModal
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        onSubmit={() => setShowModal(false)}
-      />
     </section>
-  )
+  );
 }

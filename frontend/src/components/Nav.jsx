@@ -1,6 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-export default function Nav({ onOpenModal, scrollToCalculator }) {
+export default function Nav({ scrollToCalculator }) {
+  const scrollToEarlyAccess = () => {
+    const el = document.getElementById('early-access');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white backdrop-blur-sm border-b shadow-sm">
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -26,9 +31,7 @@ export default function Nav({ onOpenModal, scrollToCalculator }) {
           </ul>
         </div>
 
-
         <div className="flex items-center space-x-4">
-
           <button
             onClick={scrollToCalculator}
             className="md:hidden bg-[#4FD1C5] hover:bg-[#3FC1B2] text-white px-4 py-2 rounded-lg font-medium transition"
@@ -36,7 +39,7 @@ export default function Nav({ onOpenModal, scrollToCalculator }) {
             Calculator
           </button>
           <button
-            onClick={onOpenModal}
+            onClick={scrollToEarlyAccess}
             className="hidden md:inline-block bg-[#4FD1C5] hover:bg-[#3FC1B2] text-white px-6 py-2 rounded-lg font-semibold transition"
           >
             Join Early Access
@@ -44,5 +47,5 @@ export default function Nav({ onOpenModal, scrollToCalculator }) {
         </div>
       </nav>
     </header>
-  )
+  );
 }

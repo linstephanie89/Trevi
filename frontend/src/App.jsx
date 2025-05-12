@@ -7,6 +7,7 @@ import Simulation from './components/Simulation'
 import Footer from './components/Footer'
 import EarlyAccessModal from './components/EarlyAccessModal'
 import SocialProof     from './components/SocialProof'
+import JoinSection from './components/JoinSection'
 
 
 export default function App() {
@@ -44,7 +45,7 @@ export default function App() {
           <Simulation onOpenEarlyAccess={() => setShowModal(true)} />
         </div>
       </main>
-
+      <JoinSection/>
       <Footer />
 
       <EarlyAccessModal
