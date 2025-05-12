@@ -21,7 +21,7 @@ export default function Hero({ onOpenModal, scrollToCalculator }) {
         </h1>
 
         <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mb-8">
-          Trevi is your sourcing co-pilot. We help you move from idea to supplier with confidence by
+          Trevi is your sourcing platform, with a built in co-pilot for founders. We help you move from idea to supplier with confidence by
           matching you with trusted partners and giving you the clarity to make smart decisions on 
           <strong className="text-gray-900"> costs</strong>, 
           <strong className="text-gray-900">margins</strong>, and 
