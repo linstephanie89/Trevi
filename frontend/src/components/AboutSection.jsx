@@ -1,6 +1,6 @@
 import React from 'react'
 import glowShape from '../assets/bg_hue.png'
-import { BarChart2, DollarSign, Users, Compass } from 'lucide-react'
+import { BarChart2, DollarSign, Users, PackageSearch } from 'lucide-react'
 
 export default function AboutSection() {
   const benefits = [
@@ -10,19 +10,19 @@ export default function AboutSection() {
       desc: 'Trevi helps you define realistic price points for your product idea, then shows you regions and suppliers that fit your goals.',
     },
     {
-      icon: <Users className="w-8 h-8 text-[#4FD1C5]" />,
-      title: 'Curated Matches, Not Cold Leads',
-      desc: 'We introduce you to <strong>trusted suppliers and sourcing agents</strong> based on region, product type, and communication history—so you’re not starting from scratch.',
-    },
-    {
       icon: <BarChart2 className="w-8 h-8 text-[#4FD1C5]" />,
       title: 'Compare Cost Scenarios Early',
       desc: 'Estimate what your product might cost in China vs Vietnam vs India <strong>including freight, tariffs, and MOQ guidance</strong> before you commit.',
     },
     {
-      icon: <Compass className="w-8 h-8 text-[#4FD1C5]" />,
-      title: 'Built-In Sourcing Intelligence',
-      desc: 'Trevi flags sourcing risks—like region concentration, trade volatility, or quote mismatches so you can make smarter decisions early.',
+      icon: <Users className="w-8 h-8 text-[#4FD1C5]" />,
+      title: 'Curated Matches, Not Cold Leads',
+      desc: 'We introduce you to <strong>trusted suppliers and sourcing agents</strong> based on region, product type, and communication history—so you’re not starting from scratch.',
+    },
+    {
+      icon: <PackageSearch className="w-8 h-8 text-[#4FD1C5]" />,
+      title: 'Track Your Product Journey',
+      desc: 'From idea to sampling to production, Trevi helps you <strong>track your progress</strong>, manage timelines, and stay aligned with suppliers along the way.',
     },
   ]
 
@@ -52,7 +52,7 @@ export default function AboutSection() {
       />
 
       <div className="relative z-10 max-w-6xl mx-auto text-center px-6">
-        <h2 className="text-3xl font-bold mb-4">Why Trevi?</h2>
+        <h2 className="text-3xl font-bold mb-4">All-in-One Sourcing</h2>
         <p className="text-gray-700 mb-12 leading-relaxed">
           Trevi isn’t just another supplier list or sourcing form. It’s a sourcing co-pilot that helps you understand your options, meet the right people, and move forward with confidence—especially if it’s your first time.
         </p>
