@@ -17,14 +17,15 @@ export default function Hero({ onOpenModal, scrollToCalculator }) {
       <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div className="text-center md:text-left">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight max-w-xl">
-          Make smarter sourcing decisions before you spend a dollar.
+          Bring your product idea to life — without the sourcing chaos.
         </h1>
 
         <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mb-8">
-          Trevi helps you build <strong>smarter sourcing relationships</strong>—pairing you with trusted suppliers and agents, then backing every connection with{' '}
-          <strong className="text-gray-900">product research</strong>,{' '}
-          <strong className="text-gray-900">cost simulation</strong>, and{' '}
-          <strong className="text-gray-900">margin insights</strong>—all in one streamlined platform.
+          Trevi is your sourcing co-pilot. We help you move from idea to supplier with confidence by
+          matching you with trusted partners and giving you the clarity to make smart decisions on 
+          <strong className="text-gray-900"> costs</strong>, 
+          <strong className="text-gray-900">margins</strong>, and 
+          <strong className="text-gray-900"> production fit</strong>—all in one place.
         </p>
 
 

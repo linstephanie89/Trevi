@@ -10,18 +10,18 @@ import {
 const steps = [
   {
     Icon: DocumentTextIcon,
-    title: '1. Define Your Product Goals',
-    desc: 'Tell us what you’re sourcing—product category, target price, and business goals like margin or lead time.',
+    title: '1. Tell Us What You’re Making',
+    desc: 'Start with your product idea — even if it’s early. We’ll help translate it into something you can actually source.',
   },
   {
     Icon: ChartBarIcon,
-    title: '2. Simulate Real Costs',
-    desc: 'Compare total landed cost ranges across countries, including tariffs, freight, and MOQ benchmarks.',
+    title: '2. Understand Your Costs & Options',
+    desc: 'See what similar products cost to produce, compare margins by region, and make smarter sourcing decisions before reaching out.',
   },
   {
     Icon: EnvelopeIcon,
-    title: '3. Match with Trusted Partners',
-    desc: 'Get a shortlist of trusted suppliers or sourcing agents—filtered by product fit, country, and reliability.',
+    title: '3. Meet the Right People',
+    desc: 'Get matched with trusted suppliers or sourcing agents based on your product type, region, and goals — with real guidance, not just a list.',
   },
 ]
 
@@ -45,8 +45,7 @@ export default function HowItWorks() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold mb-4">How Trevi Works</h2>
         <p className="text-gray-700 mb-12">
-          In three easy steps, turn guesswork into data-driven sourcing—then join our early
-          access list to be first in line when the full beta launches.
+          Trevi is your sourcing co-pilot — guiding you from product idea to trusted supplier. Here’s how we help you move forward with clarity.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
@@ -86,7 +85,7 @@ export default function HowItWorks() {
           onClick={() => setShowModal(true)}
           className="mt-12 bg-[#4FD1C5] hover:bg-[#3FC1B2] text-white px-8 py-3 rounded-md font-semibold transition"
         >
-          Join Early Access
+          Get Early Access
         </button>
       </div>
 

@@ -67,10 +67,10 @@ export default function SocialProof() {
 
       <div className="relative z-10 max-w-4xl mx-auto text-center mb-10">
         <h2 className="text-3xl font-bold text-gray-900">
-          What Sellers Told Us — And Why We’re Building Trevi
+          What We Heard From Founders and Why Trevi Exists
         </h2>
         <p className="text-sm text-gray-500 tracking-wide">
-          We listened to interviews, forums, and sourcing groups — the message was consistent.
+          We listened to product builders, sourcing agents, and ecommerce sellers — the frustration was universal.
         </p>
       </div>
 

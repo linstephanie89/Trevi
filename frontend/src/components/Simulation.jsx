@@ -20,19 +20,16 @@ const getFlag = iso =>
     .join('')
 
 export default function Simulation({ onOpenEarlyAccess }) {
-  // — Inputs
   const [productCost,  setProductCost]  = useState('')
   const [shippingCost, setShippingCost] = useState('')
   const [sellingPrice, setSellingPrice] = useState('')
 
-  // — UI state
   const [helpOpen,   setHelpOpen]   = useState(false)
   const [selected,   setSelected]   = useState(null)
   const [showDL,     setShowDL]     = useState(false)
   const [downloaded, setDownloaded] = useState(false)
   const [showSoon,   setShowSoon]   = useState(false)
 
-  // — Parse + compute
   const baseInputs = useMemo(() => ({
     pc: parseFloat(productCost)  || 0,
     sc: parseFloat(shippingCost) || 0,
@@ -45,15 +42,12 @@ export default function Simulation({ onOpenEarlyAccess }) {
       const tariffCost = base * (m.tariff / 100)
       const landed     = base + tariffCost
       const profit     = baseInputs.sp - landed
-      const margin     = baseInputs.sp > 0
-        ? (profit / baseInputs.sp) * 100
-        : 0
+      const margin     = baseInputs.sp > 0 ? (profit / baseInputs.sp) * 100 : 0
       return { ...m, tariffCost, landed, profit, margin }
     }),
     [baseInputs],
   )
 
-  // — Download
   const handleDownload = email => {
     fetch('/api/download', {
       method:  'POST',
@@ -75,9 +69,9 @@ export default function Simulation({ onOpenEarlyAccess }) {
   const hasInputs = baseInputs.pc || baseInputs.sc || baseInputs.sp
 
   const getInsight = margin => {
-    if (margin >= 30) return { icon: '✅', text: 'Healthy Margin — Strong sourcing choice', color: 'text-green-700' }
-    if (margin >= 10) return { icon: '🟠', text: 'Moderate: consider further analysis', color: 'text-yellow-700' }
-    return             { icon: '❌', text: 'Low margin — likely avoid', color: 'text-red-700' }
+    if (margin >= 30) return { icon: '✅', text: 'Healthy Margin — Strong sourcing fit', color: 'text-green-700' }
+    if (margin >= 10) return { icon: '🟠', text: 'Moderate: worth exploring with adjustments', color: 'text-yellow-700' }
+    return             { icon: '❌', text: 'Low margin — likely not viable as is', color: 'text-red-700' }
   }
 
   return (
@@ -95,7 +89,7 @@ export default function Simulation({ onOpenEarlyAccess }) {
       <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg mb-12">
         <div className="flex items-center justify-center mb-4">
           <h2 className="text-2xl font-bold text-gray-900">
-            Mini Margin Calculator <span className="text-sm text-gray-500">(Alpha)</span>
+            Explore Your Product Margins <span className="text-sm text-gray-500">(Interactive Tool)</span>
           </h2>
           <button
             onClick={() => setHelpOpen(o => !o)}
@@ -114,11 +108,11 @@ export default function Simulation({ onOpenEarlyAccess }) {
             >
               <X className="w-4 h-4" />
             </button>
-            <p>Enter per-unit cost, shipping estimate and your target price. Instantly see:</p>
+            <p>Plug in rough estimates for product cost, shipping, and your target price. We'll show you:</p>
             <ul className="list-disc list-inside mt-2">
-              <li><strong>Tariff cost</strong> (based on declared % from official HTS)</li>
-              <li><strong>Landed cost</strong> (product + shipping + tariff)</li>
-              <li><strong>Profit/unit</strong> &amp; <strong>margin %</strong></li>
+              <li><strong>Tariff impact</strong> by region</li>
+              <li><strong>Total landed cost</strong> (including shipping + tariffs)</li>
+              <li><strong>Profit per unit</strong> and <strong>margin %</strong></li>
             </ul>
           </div>
         )}
@@ -147,12 +141,12 @@ export default function Simulation({ onOpenEarlyAccess }) {
         {hasInputs && (
           <div className="mt-6 text-center bg-[#e6f7f5] border border-[#b2eee6] p-4 rounded-lg">
             <p className="text-gray-800">
-              Save this setup, compare full breakdowns & unlock supplier matches —
+              Want to save this breakdown and compare more?{' '}
               <button
                 onClick={onOpenEarlyAccess}
-                className="ml-2 font-semibold text-[#2c7a7b] hover:underline"
+                className="ml-1 font-semibold text-[#2c7a7b] hover:underline"
               >
-                Join Early Access
+                Join Trevi Early Access
               </button>
             </p>
           </div>
@@ -192,7 +186,7 @@ export default function Simulation({ onOpenEarlyAccess }) {
               onClick={() => setSelected(null)}
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
             <h3 className="text-2xl font-bold mb-6 flex items-center justify-center gap-2">
@@ -233,7 +227,6 @@ export default function Simulation({ onOpenEarlyAccess }) {
         )}
       </div>
 
-      {/* Modals */}
       <DownloadModal
         show={showDL}
         onClose={() => setShowDL(false)}
