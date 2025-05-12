@@ -208,7 +208,7 @@ export default function JoinSection() {
                   disabled={submitting}
                   className="accent-[#4FD1C5]"
                 />
-                I’d like a quick 10-min feedback call
+                I’d like a quick 10-min feedback call (we’ll reach out via email)
               </label>
               <button
                 type="submit"
