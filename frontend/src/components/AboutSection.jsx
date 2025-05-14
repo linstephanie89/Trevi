@@ -54,7 +54,7 @@ export default function AboutSection() {
       <div className="relative z-10 max-w-6xl mx-auto text-center px-6">
         <h2 className="text-3xl font-bold mb-4">All-in-One Sourcing</h2>
         <p className="text-gray-700 mb-12 leading-relaxed">
-          Trevi isn’t just another supplier list or sourcing form. It’s a sourcing co-pilot that helps you understand your options, meet the right people, and move forward with confidence—especially if it’s your first time.
+          Trevi isn’t just another supplier list or sourcing form. It’s a sourcing co-pilot that helps you understand your options, meet the right people, and move forward with confidence, especially if it’s your first time.
         </p>
 
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">

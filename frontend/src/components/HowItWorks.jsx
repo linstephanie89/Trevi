@@ -10,7 +10,7 @@ const steps = [
   {
     Icon: DocumentTextIcon,
     title: '1. Tell Us What You’re Making',
-    desc: 'Start with your product idea — even if it’s early. We’ll help translate it into something you can actually source.',
+    desc: 'Start with your product idea, even if it’s early. We’ll help translate it into something you can actually source.',
   },
   {
     Icon: ChartBarIcon,
@@ -20,7 +20,7 @@ const steps = [
   {
     Icon: EnvelopeIcon,
     title: '3. Meet the Right People',
-    desc: 'Get matched with trusted suppliers or sourcing agents based on your product type, region, and goals — with real guidance, not just a list.',
+    desc: 'Get matched with trusted suppliers or sourcing agents based on your product type, region, and goals.',
   },
 ];
 
@@ -47,7 +47,7 @@ export default function HowItWorks() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold mb-4">How Trevi Works</h2>
         <p className="text-gray-700 mb-12">
-          Trevi is your sourcing co-pilot — guiding you from product idea to trusted supplier. Here’s how we help you move forward with clarity.
+          Trevi is your sourcing co-pilot, guiding you from product idea to trusted supplier. Here’s how we help you move forward with clarity.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
