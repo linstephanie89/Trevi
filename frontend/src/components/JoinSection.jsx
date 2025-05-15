@@ -9,6 +9,7 @@ export default function JoinSection() {
   const [sourcingChallenges, setSourcingChallenges] = useState([]);
   const [monthlySpend, setMonthlySpend] = useState("");
   const [feedbackCall, setFeedbackCall] = useState(false);
+  const [interestLevel, setInterestLevel] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
@@ -49,6 +50,7 @@ export default function JoinSection() {
           companyType,
           sourcingChallenges,
           monthlySpend,
+          interestLevel,
           feedbackCall,
         }),
       });
@@ -200,6 +202,24 @@ export default function JoinSection() {
                   ))}
                 </select>
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Would you consider using a tool like Trevi if it worked for you?
+                </label>
+                <select
+                    value={interestLevel}
+                    onChange={(e) => setInterestLevel(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4FD1C5]"
+                    disabled={submitting}
+                >
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="Maybe">Maybe</option>
+                    <option value="No">No</option>
+                    <option value="Unsure">Unsure</option>
+                </select>
+                </div>
+
               <label className="flex items-center gap-2 text-sm text-gray-700">
                 <input
                   type="checkbox"
