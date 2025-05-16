@@ -7,23 +7,24 @@ export default function AboutSection() {
     {
       icon: <DollarSign className="w-8 h-8 text-[#4FD1C5]" />,
       title: 'Start with Clear Cost Targets',
-      desc: 'Trevi helps you define realistic price points for your product idea, then shows you regions and suppliers that fit your goals.',
+      desc: 'Trevi helps you set smart price points for your product idea, then find suppliers and regions that align — before you invest time or money.',
     },
     {
       icon: <BarChart2 className="w-8 h-8 text-[#4FD1C5]" />,
-      title: 'Compare Cost Scenarios Early',
-      desc: 'Estimate what your product might cost in China vs Vietnam vs India <strong>including freight, tariffs, and MOQ guidance</strong> before you commit.',
+      title: 'Compare Global Sourcing Scenarios',
+      desc: 'Estimate landed costs across countries — including <strong>freight, tariffs, and MOQ tradeoffs</strong> — powered by <strong>AI-driven insights</strong> tailored to your product.',
     },
     {
       icon: <Users className="w-8 h-8 text-[#4FD1C5]" />,
       title: 'Curated Matches, Not Cold Leads',
-      desc: 'We introduce you to <strong>trusted suppliers and sourcing agents</strong> based on region, product type, and communication history—so you’re not starting from scratch.',
+      desc: 'We introduce you to <strong>vetted suppliers and sourcing agents</strong> based on product type, region, and communication history — enhanced with <strongintelligent matching</strong> logic.',
     },
     {
       icon: <PackageSearch className="w-8 h-8 text-[#4FD1C5]" />,
-      title: 'Track Your Product Journey',
-      desc: 'From idea to sampling to production, Trevi helps you <strong>track your progress</strong>, manage timelines, and stay aligned with suppliers along the way.',
-    },
+      title: 'Stay on Track from Sample to Scale',
+      desc: 'Trevi helps you <strong>track sample timelines, production updates, and supplier communication</strong> — with smart nudges to keep your launch on schedule.',
+    }
+    
   ]
 
   return (
