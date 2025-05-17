@@ -32,18 +32,7 @@ export default function Hero({ onOpenModal, scrollToCalculator }) {
             <span className="font-semibold text-gray-900"> production fit</span>.
           </p>
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            <button
-              onClick={scrollToCalculator}
-              className="inline-flex items-center gap-2 bg-[#4FD1C5] hover:bg-[#3FC1B2] text-white px-6 py-3 rounded-md font-medium transition"
-            >
-              Try the Simulator
-            </button>
-            <button
-              onClick={onOpenModal}
-              className="border border-[#4FD1C5] text-[#4FD1C5] hover:bg-[#DFF9F5] px-6 py-3 rounded-md font-medium transition"
-            >
-              See How It Works
-            </button>
+          
           </div>
         </div>
 

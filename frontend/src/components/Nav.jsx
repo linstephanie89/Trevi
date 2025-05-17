@@ -18,41 +18,38 @@ export default function Nav({ scrollToCalculator }) {
 
         {/* Desktop links */}
         <nav className="hidden md:flex space-x-8 text-base font-medium text-gray-700">
-          <a href="#how-it-works" className="hover:text-gray-900">How</a>
+          <a href="#how-it-works"  className="hover:text-gray-900">How</a>
           <a href="#why-trevi"      className="hover:text-gray-900">Features</a>
           <a href="#social-proof"   className="hover:text-gray-900">Testimonials</a>
         </nav>
 
-        {/* CTA button (desktop) */}
-        <button
-          onClick={scrollToEarlyAccess}
-          className="hidden md:inline-block bg-[#4FD1C5] hover:bg-[#3FC1B2] text-white font-semibold px-6 py-2 rounded-md transition"
-        >
-          Join Early Access
-        </button>
+        {/* Right side: CTA + Hamburger */}
+        <div className="flex items-center">
+          {/* CTA always shown */}
+          <button
+            onClick={scrollToEarlyAccess}
+            className="bg-[#4FD1C5] hover:bg-[#3FC1B2] text-white font-semibold px-4 py-2 rounded-md transition mr-2"
+          >
+            Join Early Access
+          </button>
 
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden p-2 text-gray-700"
-          onClick={() => setOpen(o => !o)}
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden p-2 text-gray-700"
+            onClick={() => setOpen(o => !o)}
+          >
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile nav panel (links only) */}
       {open && (
         <div className="md:hidden bg-white border-t border-gray-100">
           <nav className="flex flex-col px-6 py-4 space-y-3 text-gray-700">
-            <a href="#how-it-works"  onClick={() => setOpen(false)}>How it works</a>
-            <a href="#why-trevi"      onClick={() => setOpen(false)}>Features</a>
-            <a href="#social-proof"   onClick={() => setOpen(false)}>Testimonials</a>
-            <button
-              onClick={scrollToEarlyAccess}
-              className="mt-2 bg-[#4FD1C5] hover:bg-[#3FC1B2] text-white font-semibold px-4 py-2 rounded-md transition"
-            >
-              Join Early Access
-            </button>
+            <a href="#how-it-works" onClick={() => setOpen(false)}>How it works</a>
+            <a href="#why-trevi"     onClick={() => setOpen(false)}>Features</a>
+            <a href="#social-proof"  onClick={() => setOpen(false)}>Testimonials</a>
           </nav>
         </div>
       )}
