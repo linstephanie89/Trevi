@@ -138,7 +138,7 @@ export default function Simulation({ onOpenEarlyAccess }) {
           ))}
         </div>
 
-        {hasInputs && (
+        {/* {hasInputs && (
           <div className="mt-6 text-center bg-[#e6f7f5] border border-[#b2eee6] p-4 rounded-lg">
             <p className="text-gray-800">
               Want to save this breakdown and compare more?{' '}
@@ -150,7 +150,7 @@ export default function Simulation({ onOpenEarlyAccess }) {
               </button>
             </p>
           </div>
-        )}
+        )} */}
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 mb-12">

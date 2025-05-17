@@ -1,21 +1,31 @@
-import React from 'react'
-import hue from '../assets/bg_hue.png'
-
-const marqueeStyles = `
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.animate-marquee {
-  animation: marquee 60s linear infinite;
-  will-change: transform;
-}
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-`
+import React, { useRef } from 'react';
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
 export default function SocialProof() {
+  // Reusable wave divider inside component
+  function WaveDivider({ variant = 'down', from = '#FFFFFF', to = '#F8FAF9' }) {
+    const rotate = variant === 'up' ? 'rotate-180' : '';
+    const position = variant === 'down' ? { top: '-1px' } : { bottom: '-1px' };
+    return (
+      <div className="absolute inset-x-0 overflow-hidden pointer-events-none" style={position}>
+        <svg
+          className={`block w-full h-20 ${rotate}`}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="dividerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor={from} />
+              <stop offset="100%" stopColor={to} />
+            </linearGradient>
+          </defs>
+          <path d="M0,60 C300,0 900,120 1200,60 L1200,0 L0,0 Z" fill="url(#dividerGrad)" />
+        </svg>
+      </div>
+    );
+  }
+
   const testimonials = [
     {
       quote: 'I’m constantly paying between 5-6 subscriptions for softwares and tools, my freight broker, and a spreadsheet — just to figure out if a product is even viable. If something pulled that together, it’d be game-changing.',
@@ -47,50 +57,77 @@ export default function SocialProof() {
       author: 'Procurement Analyst',
       title: 'Consumer Goods Startup',
     },
-  ]
+  ];
 
-  const looped = [...testimonials, ...testimonials]  
+  const containerRef = useRef(null);
+  const scroll = direction => {
+    if (!containerRef.current) return;
+    const { clientWidth } = containerRef.current;
+    const offset = direction === 'left' ? -clientWidth : clientWidth;
+    containerRef.current.scrollBy({ left: offset, behavior: 'smooth' });
+  };
 
   return (
     <section
       id="social-proof"
-      className="relative px-6 py-16 bg-[#F8FAF9] scroll-mt-20"
-      style={{
-        backgroundImage: `url(${hue})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
-        backgroundSize: '1000px 1000px',
-        backgroundBlendMode: 'soft-light',
-      }}
+      className="relative overflow-hidden scroll-mt-20 pb-40"
     >
-      <style>{marqueeStyles}</style>
+      {/* Top wave: white → brand */}
+      <WaveDivider variant="down" from="#FFFFFF" to="#F8FAF9" />
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center mb-10">
-        <h2 className="text-3xl font-bold text-gray-900">
-          What We Heard From Founders and Why Trevi Exists
+      {/* Background gradient under content */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-[#F8FAF9] opacity-60 pointer-events-none" />
+
+      {/* Header area with extra top/bottom padding */}
+      <div className="relative z-10 px-6 py-28 text-center max-w-4xl mx-auto">
+        <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
+          What We Heard From Founders
         </h2>
-        <p className="text-sm text-gray-500 tracking-wide">
-          We listened to product builders, sourcing agents, and ecommerce sellers — the frustration was universal.
+        <p className="text-lg text-gray-700">
+          Real insights from ecommerce founders, procurement pros, and SMBs who need faster, clearer sourcing.
         </p>
       </div>
 
-      <div className="relative overflow-hidden">
-        <div className="absolute top-0 left-0 h-full w-16 bg-gradient-to-r from-[#F8FAF9] to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-[#F8FAF9] to-transparent z-10 pointer-events-none" />
+      {/* Carousel area with breathing room */}
+      <div className="relative z-10 flex items-center px-6 py-8">
+        <button
+          onClick={() => scroll('left')}
+          className="absolute left-6 z-20 p-2 bg-white/80 backdrop-blur rounded-full shadow hover:bg-white"
+          aria-label="Scroll left"
+        >
+          <ChevronLeft className="w-6 h-6 text-gray-700" />
+        </button>
 
-        <div className="animate-marquee flex gap-4 w-max">
-          {looped.map(({ quote, author, title }, i) => (
+        <div
+          ref={containerRef}
+          className="w-full overflow-x-auto snap-x snap-mandatory flex gap-6 scroll-smooth scrollbar-hide"
+        >
+          {testimonials.map(({ quote, author, title }, i) => (
             <div
               key={i}
-              className="flex-none w-[280px] lg:w-[300px] bg-white p-5 rounded-xl shadow text-gray-800"
+              className="snap-center flex-none w-[280px] lg:w-[320px] bg-white p-6 rounded-2xl shadow-lg"
             >
-              <p className="italic text-base leading-snug mb-2">“{quote}”</p>
-              <p className="font-semibold text-sm mb-1">{author}</p>
-              {title && <p className="text-xs text-gray-500">{title}</p>}
+              <Quote className="w-8 h-8 text-teal-400 mb-4" />
+              <p className="italic text-gray-800 text-sm leading-relaxed mb-4">
+                {quote}
+              </p>
+              <p className="font-semibold text-gray-900">{author}</p>
+              {title && <p className="text-xs text-gray-500 mt-1">{title}</p>}
             </div>
           ))}
         </div>
+
+        <button
+          onClick={() => scroll('right')}
+          className="absolute right-6 z-20 p-2 bg-white/80 backdrop-blur rounded-full shadow hover:bg-white"
+          aria-label="Scroll right"
+        >
+          <ChevronRight className="w-6 h-6 text-gray-700" />
+        </button>
       </div>
+
+      {/* Bottom wave: brand → white */}
+      <WaveDivider variant="up" from="#F8FAF9" to="#FFFFFF" />
     </section>
-  )
+  );
 }

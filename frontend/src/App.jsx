@@ -8,6 +8,9 @@ import Footer from './components/Footer'
 import EarlyAccessModal from './components/EarlyAccessModal'
 import SocialProof     from './components/SocialProof'
 import JoinSection from './components/JoinSection'
+import Promo from './components/PromoCodeStep'
+import SupplierMatchingGrid from './components/SupplierGrid'
+import Details from './components/Details'
 
 
 export default function App() {
@@ -33,19 +36,11 @@ export default function App() {
 
         <HowItWorks />
         <AboutSection />
-        <SocialProof
-            quote="Excel, email, and a phone runs 99% of the world—Trevi feels like the future."
-            author="– Alex Zhao, FBA Seller"
-            title="Early-access beta user"
-            signupCount={12}
-        />
+        <SocialProof/>
+        <JoinSection/>
 
-        <div ref={calcRef}>
-          {/* Pass down the early-access opener */}
-          <Simulation onOpenEarlyAccess={() => setShowModal(true)} />
-        </div>
       </main>
-      <JoinSection/>
+
       <Footer />
 
       <EarlyAccessModal
