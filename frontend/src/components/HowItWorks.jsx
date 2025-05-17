@@ -4,7 +4,7 @@ import WaveDivider from './WaveDivider';
 import glowShape from '../assets/bg_hue.png';
 import onboardingImg from '../assets/Idea.png';
 import detailsImg from '../assets/Details.png';
-import matchesImg from '../assets/matches.png';
+import matchesImg from '../assets/Matches.png';
 import InteractiveTool from './Simulation';
 
 const steps = [

@@ -1,7 +1,7 @@
 import React from 'react'
 import glowShape from '../assets/bg_hue.png'
 import onboardingImg from '../assets/Idea.png'
-import supplierImg from '../assets/matches.png'
+import supplierImg from '../assets/Matches.png'
 
 export default function Hero({ onOpenModal, scrollToCalculator }) {
   return (
