@@ -15,18 +15,53 @@ export default function JoinSection() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+  
   const toggleChallenge = (val) =>
     setSourcingChallenges((prev) =>
       prev.includes(val) ? prev.filter((c) => c !== val) : [...prev, val]
     );
+  
+    const validate = () => {
+      if (!email.trim()) return "Email is required.";
+      if (!role) return "Role / responsibility is required.";
+      if (!companyType) return "Company type is required.";
+      if (sourcingChallenges.length === 0)
+        return "Select at least one sourcing challenge.";
+      return null;
+    };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationMsg = validate();
+    if (validationMsg) {
+      setError(validationMsg);
+      return;
+    }
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    setError(null);
+    try {
+      const res = await fetch(`${apiUrl}/api/early-access`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          role,
+          companyType,
+          sourcingChallenges,
+          monthlySpend,
+          interestLevel,
+          feedbackCall,
+        }),
+      });
+      if (!res.ok) throw new Error(`Server returned ${res.status}`);
       setSubmitted(true);
-    }, 1500);
+    } catch (err) {
+      console.error("Submission error:", err);
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
