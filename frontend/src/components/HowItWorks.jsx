@@ -35,7 +35,7 @@ export default function HowItWorks() {
     switch (activeStep) {
       case 0:
         return (
-          <div className="space-y-8 max-w-6xl mx-auto">
+          <div className="space-y-8 max-w-6xl mx-auto ">
             <h3 className="text-3xl font-bold">Describe Your Product Idea</h3>
             <p className="text-gray-600">
               Type a short phrase—e.g. “Hydrating Facial Mist”—and instantly generate the specs Trevi needs to get you started.
@@ -110,9 +110,10 @@ export default function HowItWorks() {
 
   return (
     <section
-      id="how-it-works"
-      className="relative py-20 overflow-hidden bg-gradient-to-b from-white via-[#E8F9F7] to-white scroll-mt-20"
-    >
+    id="how-it-works"
+    className="relative -mt-8 py-20 overflow-hidden bg-gradient-to-b from-white via-[#E8F9F7] to-white scroll-mt-20"
+  >
+  
       {/* Top fade */}
       <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-white to-transparent pointer-events-none" />
       {/* Ambient glow */}

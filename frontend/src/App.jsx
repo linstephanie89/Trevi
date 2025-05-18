@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import EarlyAccessModal from './components/EarlyAccessModal'
 import SocialProof     from './components/SocialProof'
 import JoinSection from './components/JoinSection'
+import Problem from './components/Problem'
 import Promo from './components/PromoCodeStep'
 import SupplierMatchingGrid from './components/SupplierGrid'
 import Details from './components/Details'
@@ -33,7 +34,7 @@ export default function App() {
           onOpenModal={() => setShowModal(true)}
           scrollToCalculator={scrollToCalculator}
         />
-
+        <Problem/>
         <HowItWorks />
         <AboutSection />
         <SocialProof/>
