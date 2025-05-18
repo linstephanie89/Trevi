@@ -1,26 +1,49 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import Header from './components/Nav'
 import Hero from './components/Hero'
 import HowItWorks from './components/HowItWorks'
 import AboutSection from './components/AboutSection'
 import Simulation from './components/Simulation'
 import Footer from './components/Footer'
-import EarlyAccessModal from './components/EarlyAccessModal'
-import SocialProof     from './components/SocialProof'
+import WaitlistModal from './components/WaitlistModal' // make sure this matches your file
+import SocialProof from './components/SocialProof'
 import JoinSection from './components/JoinSection'
 import Problem from './components/Problem'
 import Promo from './components/PromoCodeStep'
 import SupplierMatchingGrid from './components/SupplierGrid'
 import Details from './components/Details'
 
-
 export default function App() {
   const [showModal, setShowModal] = useState(false)
+  const hasShownModal = useRef(false)
+  const aboutRef = useRef(null)
   const calcRef = useRef(null)
 
   const scrollToCalculator = () => {
     calcRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasShownModal.current) {
+          setShowModal(true)
+          hasShownModal.current = true
+        }
+      },
+      { root: null, threshold: 0.4 }
+    )
+
+    if (aboutRef.current) {
+      observer.observe(aboutRef.current)
+    }
+
+    return () => {
+      if (aboutRef.current) {
+        observer.unobserve(aboutRef.current)
+      }
+    }
+  }, [])
 
   return (
     <>
@@ -34,20 +57,23 @@ export default function App() {
           onOpenModal={() => setShowModal(true)}
           scrollToCalculator={scrollToCalculator}
         />
-        <Problem/>
+        <Problem />
         <HowItWorks />
-        <AboutSection />
-        <SocialProof/>
-        <JoinSection/>
-
+        <AboutSection ref={aboutRef} />
+        <SocialProof />
+        <JoinSection />
       </main>
 
       <Footer />
 
-      <EarlyAccessModal
-        show={showModal}
+      <WaitlistModal
+        isOpen={showModal}
         onClose={() => setShowModal(false)}
-        onSubmit={() => setShowModal(false)}
+        scrollToForm={() => {
+          document
+            .getElementById('early-access-form')
+            ?.scrollIntoView({ behavior: 'smooth' })
+        }}
       />
     </>
   )

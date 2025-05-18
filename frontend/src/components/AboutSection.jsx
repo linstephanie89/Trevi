@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import glowShape from '../assets/bg_hue.png';
 import { BarChart2, DollarSign, Users, PackageSearch } from 'lucide-react';
-import WaveDivider from './WaveDivider'; // adjust path as needed
+import WaveDivider from './WaveDivider';
 
 const tabs = [
   { key: 'cost', label: 'Cost Targets' },
@@ -12,34 +12,38 @@ const tabs = [
 
 const benefits = {
   cost: {
-    icon: <DollarSign className="w-8 h-8 text-[#4FD1C5]" />, 
+    icon: <DollarSign className="w-8 h-8 text-[#4FD1C5]" />,
     title: 'Start with Clear Cost Targets',
     desc: 'Trevi helps set smart price points, then find suppliers and regions that align — before you invest time or money.',
   },
   scenarios: {
-    icon: <BarChart2 className="w-8 h-8 text-[#4FD1C5]" />, 
+    icon: <BarChart2 className="w-8 h-8 text-[#4FD1C5]" />,
     title: 'Compare Global Sourcing Scenarios',
     desc: 'Estimate landed costs across countries — including freight, tariffs & MOQ tradeoffs — powered by AI-driven insights.',
   },
   matches: {
-    icon: <Users className="w-8 h-8 text-[#4FD1C5]" />, 
+    icon: <Users className="w-8 h-8 text-[#4FD1C5]" />,
     title: 'Curated Matches, Not Cold Leads',
     desc: 'Connect with vetted suppliers & sourcing agents based on product, region, and communication history.',
   },
   timeline: {
-    icon: <PackageSearch className="w-8 h-8 text-[#4FD1C5]" />, 
+    icon: <PackageSearch className="w-8 h-8 text-[#4FD1C5]" />,
     title: 'Stay on Track from Sample to Scale',
     desc: 'Track sample timelines, production updates, and supplier communication — with smart nudges.',
   },
 };
 
-export default function AboutSection() {
+const AboutSection = forwardRef((props, ref) => {
   const [active, setActive] = useState('cost');
 
   return (
-    <section id="why-trevi" className="relative overflow-hidden scroll-mt-20 bg-gradient-to-b from-white via-[#E8F9F7]/20 to-white pb-40">
-     
-      {/* Accent glow + content */}
+    <section
+      id="why-trevi"
+      ref={ref}
+      className="relative overflow-hidden scroll-mt-20 bg-gradient-to-b from-white via-[#E8F9F7]/20 to-white pb-40"
+      {...props}
+    >
+      {/* Accent glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute -top-64 right-0 w-[800px] h-[800px] opacity-50 blur-[200px]"
@@ -52,6 +56,7 @@ export default function AboutSection() {
         <p className="text-gray-700 mb-8">
           Trevi isn’t just a supplier list or form. It’s a sourcing co-pilot that guides you on cost, scenarios, matches, and timelines.
         </p>
+
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
           {Object.entries(benefits).map(([key, { icon, title, desc }]) => (
             <div
@@ -71,9 +76,9 @@ export default function AboutSection() {
         </div>
       </div>
 
-      {/* Bottom wave: brand tint → white */}
       <WaveDivider variant="up" from="#FFFFFF" to="#E8F9F7" />
-
     </section>
   );
-}
+});
+
+export default AboutSection;

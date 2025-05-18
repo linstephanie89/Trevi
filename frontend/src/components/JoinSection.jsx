@@ -16,7 +16,7 @@ export default function JoinSection() {
   const [error, setError] = useState(null);
 
   const apiUrl = import.meta.env.VITE_API_URL;
-  
+
   const toggleChallenge = (val) =>
     setSourcingChallenges((prev) =>
       prev.includes(val) ? prev.filter((c) => c !== val) : [...prev, val]
@@ -232,7 +232,7 @@ export default function JoinSection() {
                 disabled={submitting}
                 className="w-full bg-teal-400 hover:bg-teal-500 text-white font-semibold py-3 rounded-lg transition"
               >
-                {submitting ? 'Submitting...' : 'Join Waitlist'}
+                {submitting ? 'Submitting...' : 'Join'}
               </button>
             </form>
           ) : (
