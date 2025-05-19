@@ -38,6 +38,8 @@ const sheets = google.sheets({ version: 'v4', auth })
 const SPREADSHEET_ID = '1tAv6v211tajvMgtAxSVeGdy23iq-2xRd2bSf0hfEVLA'
 const EARLY_ACCESS_TAB = 'EarlyAccess'
 const DOWNLOADS_TAB = 'Downloads'
+const CONTACT_TAB = 'Contact Me'
+
 
 // Helper: log and append to Google Sheet
 async function appendRow(sheetName, values) {
@@ -100,6 +102,18 @@ app.post('/api/download', async (req, res) => {
     const { email } = req.body
     const timestamp = new Date().toISOString()
     await appendRow(DOWNLOADS_TAB, [timestamp, email])
+    res.json({ success: true })
+  } catch (err) {
+    console.error('Download Error:', err.message)
+    res.status(500).json({ error: 'Could not record download' })
+  }
+})
+// POST /api/contact
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { email, message = '' } = req.body;
+    const timestamp = new Date().toISOString()
+    await appendRow(CONTACT_TAB, [timestamp, email, input])
     res.json({ success: true })
   } catch (err) {
     console.error('Download Error:', err.message)

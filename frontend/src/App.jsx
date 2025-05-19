@@ -12,12 +12,14 @@ import Problem from './components/Problem'
 import Promo from './components/PromoCodeStep'
 import SupplierMatchingGrid from './components/SupplierGrid'
 import Details from './components/Details'
+import ContactModal from './components/ContactModal'
 
 export default function App() {
   const [showModal, setShowModal] = useState(false)
   const hasShownModal = useRef(false)
   const aboutRef = useRef(null)
   const calcRef = useRef(null)
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const scrollToCalculator = () => {
     calcRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -64,7 +66,8 @@ export default function App() {
         <JoinSection />
       </main>
 
-      <Footer />
+      <Footer onContactClick={() => setIsContactOpen(true)} />
+      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
 
       <WaitlistModal
         isOpen={showModal}
