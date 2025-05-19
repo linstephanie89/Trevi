@@ -113,7 +113,7 @@ app.post('/api/contact', async (req, res) => {
   try {
     const { email, message = '' } = req.body;
     const timestamp = new Date().toISOString()
-    await appendRow(CONTACT_TAB, [timestamp, email, input])
+    await appendRow(CONTACT_TAB, [timestamp, email, message])
     res.json({ success: true })
   } catch (err) {
     console.error('Download Error:', err.message)
