@@ -1,5 +1,4 @@
 import React from 'react';
-import { Instagram, Linkedin, Github, Twitter } from 'lucide-react';
 
 export default function Footer({ onContactClick }) {
   return (
@@ -18,22 +17,6 @@ export default function Footer({ onContactClick }) {
               Contact
             </button>
           </nav>
-        </div>
-
-        {/* Social Icons */}
-        <div className="flex space-x-4 text-gray-600">
-          <a href="#" aria-label="Twitter" className="hover:text-teal-600 transition">
-            <Twitter className="w-5 h-5" />
-          </a>
-          <a href="#" aria-label="LinkedIn" className="hover:text-teal-600 transition">
-            <Linkedin className="w-5 h-5" />
-          </a>
-          <a href="#" aria-label="GitHub" className="hover:text-teal-600 transition">
-            <Github className="w-5 h-5" />
-          </a>
-          <a href="#" aria-label="Instagram" className="hover:text-teal-600 transition">
-            <Instagram className="w-5 h-5" />
-          </a>
         </div>
       </div>
 
